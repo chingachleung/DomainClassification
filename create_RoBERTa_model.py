@@ -8,12 +8,12 @@ from torch import cuda
 import argparse
 import logging
 
-from HateSpeechData import HateSpeechData
-from BertClass import BertClass
+from VerticalData import VerticalData
+from RobertaClass import RobertaClass
 from model_train import *
 
 logging.basicConfig(level=logging.ERROR)
-args = argparse.ArgumentParser(description='hate speecch classification using BERT')
+args = argparse.ArgumentParser(description='domain classification using RoBERTA')
 args.add_argument('-a', '--train_file', type=str, help='train file', required=True)
 args.add_argument('-v', '--val_file', type=str, help='val file', required=True)
 args = args.parse_args()
@@ -28,7 +28,7 @@ if __name__=="__main__":
 
     # Setting up the device for GPU usage
     device = 'cuda' if cuda.is_available() else 'cpu'
-    model = BertClass()
+    model = RobertaClass()
     #for gpu further training
     #model = nn.DataParallel(model, device_ids=[0,1,2,3])
     model.to(device)
