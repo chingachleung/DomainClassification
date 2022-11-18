@@ -58,11 +58,11 @@ if __name__=="__main__":
     onehot_encoder = OneHotEncoder(handle_unknown="ignore")  # set to zeros if new categories in test set occur
 
     training_onehot_targets = onehot_encoder.fit_transform(categories.values.reshape(-1, 1)).toarray()
-    training_set = HateSpeechData(tweets, training_onehot_targets, tokenizer, MAX_LEN)
+    training_set = VerticalData(tweets, training_onehot_targets, tokenizer, MAX_LEN)
     training_loader = DataLoader(training_set, **train_params)
 
     val_onehot_targets = onehot_encoder.transform(val_categories.values.reshape(-1, 1)).toarray()
-    val_set = HateSpeechData(val_tweets, val_onehot_targets, tokenizer, MAX_LEN)
+    val_set = VerticalData(val_tweets, val_onehot_targets, tokenizer, MAX_LEN)
     val_loader = DataLoader(val_set)
 
     #start training
